@@ -43,15 +43,15 @@ public class FullNameGenerator {
     // Displays user's full name
     public static void displayUserFullName () {
 
-        if (midName.isEmpty() && suffix.isEmpty()){
+        if (midName.isBlank() && suffix.isBlank()){
             System.out.printf("Full name: %s %s", firstName, lastName);
         }
 
-        else if (suffix.isEmpty()){
+        else if (suffix.isBlank()){
             System.out.printf("Full name: %s %s %s", firstName, midName, lastName);
         }
 
-        else if (midName.isEmpty()){
+        else if (midName.isBlank()){
             System.out.printf("Full name: %s %s, %s", firstName, lastName, suffix);
         }
 
