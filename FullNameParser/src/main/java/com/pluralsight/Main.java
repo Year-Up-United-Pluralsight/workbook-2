@@ -1,5 +1,4 @@
 package com.pluralsight;
-import org.w3c.dom.ls.LSOutput;
 
 import java.util.Scanner;
 
@@ -14,18 +13,18 @@ public class Main {
         String name = (scanner.nextLine()).trim();      // Takes name input, trims each side
 
     // CALCULATE THE UNKNOWN ---------------------------------------------------------------
-        String[] splitName = name.split(" ");    // Splits input by " " to isolate names; 2 or 3
+        String[] splitNames = name.split(" ");    // Splits input by " " to isolate names; 2 or 3
 
         // Sets first and last name
-        String firstName = splitName[0];                    // Sets first element to firstName
-        String lastName = splitName[splitName.length - 1];  // Sets last element to lastName
+        String firstName = splitNames[0];                    // Sets first element to firstName
+        String lastName = splitNames[splitNames.length - 1];  // Sets last element to lastName
 
         String middleName;                           // Initializes middleName variable
 
         // Sets middleName based on input
-        if (splitName.length == 3) {                // If first + middle + last name
+        if (splitNames.length == 3) {                // If first + middle + last name
 
-            middleName = splitName[1];              // Sets middleName to middle element
+            middleName = splitNames[1];              // Sets middleName to middle element
         }
 
         else {                                      // Else only first + last name
