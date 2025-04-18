@@ -34,8 +34,6 @@ public class CellPhone {
         cellPhone.setOwner(owner);
         cellPhone.setPhoneNumber(phoneNumber);
 
-        cellPhone.getOwner();
-
     // DISPLAYS USER'S PHONE INFO
 
         System.out.printf("%s's Phone Details: \n    Model: %s\n    Carrier: %s\n    Phone Number: %s\n    Serial Number: %.0f\n",
