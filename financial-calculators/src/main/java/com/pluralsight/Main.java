@@ -11,43 +11,46 @@ public class Main {
     public static void main (String[] args){
 
     // Gets principal, interest rate, and loan length
-        System.out.println("Enter the principal: ");
+        System.out.print("Enter the principal: ");
         principal = scanner.nextDouble();
 
-        System.out.println("Enter the interest rate: ");
+        System.out.print("Enter the interest rate: ");
         annualInterestRate = scanner.nextDouble();
 
-        System.out.println("Enter the loan length: ");
+        System.out.print("Enter the loan length: ");
         loanLength = scanner.nextInt();
 
 
     // Calculates Base Mortgage
-        // Monthly Payment = P × (i*(1+i)^n / ((1+i)^n)-1)
-        double one_plus_i = (1 + annualInterestRate);
+        // M (Monthly Payment) = P × (i*(1+i)^n / ((1+i)^n)-1)
+        // P = Principal
 
-        // Left Hand Expression
-        int nNumOfMonthlyPayments = 12 * loanLength;
-        double one_plus_i_raised_to_n = Math.pow(one_plus_i, nNumOfMonthlyPayments);
-        double leftExpression = annualInterestRate * one_plus_i_raised_to_n;
+        // i (Monthly interest rate) = Annual interest rate / 12
+        double monthlyInterestRate = annualInterestRate / 12;
 
-        // Right Hand Expression
-        double rightExpression = (one_plus_i_raised_to_n) - 1;
+        // n (Number of monthly payments) = Loan length * 12
+        int numOfMonthlyPayments = loanLength * 12;
+
+        // Shared Expression (i*(1+i)^n)
+        double one_plus_i = (1 + monthlyInterestRate);                             // (1+i)
+        double shared_expression = Math.pow(one_plus_i, numOfMonthlyPayments);     // (1+i)^n
+
+        // Left and Right Expressions
+        double leftExpression = monthlyInterestRate * shared_expression;          // i*(1+i)^n
+        double rightExpression = shared_expression - 1;                           // ((1+i)^n)-1
 
         // Final Equation
         double monthlyPayment = principal * (leftExpression / rightExpression);
 
     // Calculates interest
-        // Total Interest =(M×n)−P
-        double monthlyInterestRate = annualInterestRate / 12;
-        double totalInterest = (principal * monthlyInterestRate) - principal;
+        // Total Interest = (M×n)−P
+        double totalInterest = (monthlyPayment * numOfMonthlyPayments) - principal;
 
 
-        // Displays expected monthly payment and total interest paid
+    // Displays expected monthly payment and total interest paid
         // System.out.printf("");
-        System.out.printf("A $53,000 loan at 7.625% interest for 15 years would\n" +
-                "have a $495.09/mo payment with a total interest of $36,115.99");
-
-
+        System.out.printf("A $%.2f loan at %.3f%% interest for %d years would have a $%.2f/mo payment with a total interest of $%.2f",
+                principal, annualInterestRate, loanLength, monthlyPayment, totalInterest);
 
     }
 }
